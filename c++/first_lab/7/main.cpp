@@ -3,12 +3,15 @@
 
 using namespace std;
 const double eps = 1.e-5;
+double res = 1.0;
+long long x;
+
 long long fact(long long a) {
-    long long ans = 1;
+    long long result = 1;
     for (int i = 1; i <= a; i++) {
-        ans *= i;
+        result *= i;
     }
-    return ans;
+    return result;
 }
 
 long long step(long long a, long long b) {
@@ -18,17 +21,16 @@ long long step(long long a, long long b) {
     }
     return ans;
 }
+
+double rec(double ans, int n) {
+    if (ans > eps) {
+        return (rec(ans + (double)step(-1, n) * (double)step(x, 2 * n)/(double)fact(2*n), n + 1));
+    }
+    return ans;
+}
 int main() {
-    long long x;
-    long long n = 1;
-    double ans = 1.0;
     cin >> x;
 
-    while (ans > eps) {
-        ans += (double)step(-1, n) * (double)step(x, 2 * n)/(double)fact(2*n);
-        n++;
-    }
-
-    cout << fixed << setprecision (5) << ans;
+    cout << fixed << setprecision (5) << rec(1.0, 1);
     return 0;
 }
