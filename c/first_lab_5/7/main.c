@@ -3,23 +3,20 @@
 #include <math.h>
 
 const double eps = 1.e-5;
-
+double x;
 static int
 fact (int n) {
     return (n < 2) ? 1 : n * fact(n - 1);
 }
-
-int main() {
-    double x;
-    int step = 3;
-    scanf("%lf", &x);
-    double ans = x;
-
-    while (ans > eps) {
-        ans += pow(x, step)/fact(step);
-	step += 2;
+double rec(double ans, int step) {
+    if (ans > step) {
+        return (rec(ans + pow(x, step)/fact(step), step + 2));
     }
+    return ans;
+}
+int main() {;
+    scanf("%lf", &x);
 
-    printf("%f", ans);
+    printf("%f", rec(x, 3));
     return 0;
 }
