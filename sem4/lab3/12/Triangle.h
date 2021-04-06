@@ -1,11 +1,3 @@
-//
-// Created by llSoK on 01.04.2021.
-//
-
-#ifndef LENA_TRIANGLE_H
-#define LENA_TRIANGLE_H
-
-
 class Triangle {
 private:
     double firstSide{}, secondSide{}, angle{};
@@ -26,10 +18,17 @@ public:
 
     double getThirdSide() const;
 
+    void outputTriangle() const;
+
+    void setTriangle();
+
+    double getHeightFromTheLargestAngle() const;
     virtual ~Triangle();
+
+    friend bool operator==(const Triangle &first, const Triangle &second);
+
+    friend bool operator^(const Triangle &first, const Triangle &second);
 
     Triangle(double firstSide, double secondSide, double angle);
 };
 
-
-#endif //LENA_TRIANGLE_H
